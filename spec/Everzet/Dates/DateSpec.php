@@ -75,4 +75,10 @@ class DateSpec extends ObjectBehavior
         $previous->getDay()->shouldReturn(1);
         $previous->getPeriod()->__toString()->shouldReturn('May 2014');
     }
+
+    function it_can_tell_the_date_weekday_number()
+    {
+        $this->beConstructedWith(16, new Period(Month::fromName('April'), Year::fromNumber(2013)));
+        $this->toWeekdayNumber()->shouldReturn(2);
+    }
 }

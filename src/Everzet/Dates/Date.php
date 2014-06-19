@@ -44,14 +44,12 @@ final class Date
 
     public function toTimestamp()
     {
-        $time = sprintf(
-            '%d.%d.%d',
-            $this->day,
-            $this->period->getMonth()->toNumber(),
-            $this->period->getYear()->toNumber()
-        );
+        return $this->getDateTime()->getTimestamp();
+    }
 
-        return DateTime::createFromFormat('d.n.Y', $time)->getTimestamp();
+    public function toWeekdayNumber()
+    {
+        return (int) $this->getDateTime()->format('N');
     }
 
     public function previous()
@@ -70,5 +68,17 @@ final class Date
         }
 
         return new self($this->day + 1, $this->period);
+    }
+
+    private function getDateTime()
+    {
+        $time = sprintf(
+            '%d.%d.%d',
+            $this->day,
+            $this->period->getMonth()->toNumber(),
+            $this->period->getYear()->toNumber()
+        );
+
+        return DateTime::createFromFormat('d.n.Y', $time);
     }
 }
