@@ -1,0 +1,22 @@
+{
+    "name": "everzet/dates",
+    "description": "Simplistic Dates library used in demos and presentations.",
+    "keywords": ["Dates", "Month", "Year"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Konstantin Kudryashov",
+            "email": "ever.zet@gmail.com",
+            "homepage": "http://everzet.com"
+        }
+    ],
+
+    "require-dev": {
+        "phpspec/phpspec": "~2.1.0@dev"
+    },
+
+    "autoload": {
+        "psr-0": {"Everzet\\Dates": "src"}
+    }
+}
