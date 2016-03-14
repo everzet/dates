@@ -13,7 +13,7 @@
     ],
 
     "require-dev": {
-        "phpspec/phpspec": "~2.1.0@dev"
+        "phpspec/phpspec": "~2.1"
     },
 
     "autoload": {
