@@ -60,6 +60,20 @@ final class Date
         return (int) $this->getDateTime()->format('N');
     }
 
+    public function nextWeekday($number)
+    {
+        if ($number >= $this->toWeekdayNumber()) {
+            return new self($this->getDay() + $number - $this->toWeekdayNumber(), $this->period);
+        }
+
+        return new self($this->getDay() + 7 - $this->toWeekdayNumber() + $number, $this->period);
+    }
+
+    public function isWeekday($number)
+    {
+        return $number === $this->toWeekdayNumber();
+    }
+
     public function previous()
     {
         if (1 === $this->day) {

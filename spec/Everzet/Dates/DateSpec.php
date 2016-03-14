@@ -3,6 +3,7 @@
 namespace spec\Everzet\Dates;
 
 use DateTime;
+use Everzet\Dates\Date;
 use Everzet\Dates\Month;
 use Everzet\Dates\Period;
 use Everzet\Dates\Year;
@@ -80,5 +81,20 @@ class DateSpec extends ObjectBehavior
     {
         $this->beConstructedWith(16, new Period(Month::fromName('April'), Year::fromNumber(2013)));
         $this->toWeekdayNumber()->shouldReturn(2);
+    }
+
+    function it_can_tell_if_it_is_a_particular_weekday()
+    {
+        $this->beConstructedWith(16, new Period(Month::fromName('April'), Year::fromNumber(2013)));
+        $this->shouldBeWeekday(Date::TUESDAY);
+        $this->shouldNotBeWeekday(Date::WEDNESDAY);
+    }
+
+    function it_can_forward_to_the_closest_specified_weekday()
+    {
+        $this->beConstructedWith(16, new Period(Month::fromName('April'), Year::fromNumber(2013)));
+        $this->nextWeekday(Date::WEDNESDAY)->getDay()->shouldReturn(17);
+        $this->nextWeekday(Date::MONDAY)->getDay()->shouldReturn(22);
+        $this->nextWeekday(Date::TUESDAY)->getDay()->shouldReturn(16);
     }
 }
